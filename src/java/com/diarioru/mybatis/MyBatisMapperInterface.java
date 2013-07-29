@@ -14,11 +14,11 @@ import org.apache.ibatis.mapping.StatementType;
  */
 public interface MyBatisMapperInterface {
 
-    @Select(value = "{ #{next_val, mode=OUT, jdbcType=NUMERIC} = call avelasco.maestrodiarioru.obtenerSiguienteId(#{nombre_tabla, mode=IN, jdbcType=VARCHAR })}")
+    @Select(value = "{ #{next_val, mode=OUT, jdbcType=NUMERIC} = call avelasco.maestro_diarioru.CorrelativoTabla(#{nombre_tabla, mode=IN, jdbcType=VARCHAR })}")
     @Options(statementType = StatementType.CALLABLE)
     public Object ObtenerId(ParamObtenerId param);
     
-    @Select(value = "{ #{siguiente_correlativo, mode=OUT, jdbcType=NUMERIC} = call avelasco.maestrodiarioru.obtenerCorrelativoReq(#{tipo_requerimiento, mode=IN, jdbcType=VARCHAR })}")
+    @Select(value = "{ #{siguiente_correlativo, mode=OUT, jdbcType=NUMERIC} = call avelasco.maestro_diarioru.CorrelativoRequerimiento(#{tipo_requerimiento, mode=IN, jdbcType=VARCHAR })}")
     @Options(statementType = StatementType.CALLABLE)
     public Object SiguienteCorrelativo(ParamSiguienteCorrelativo param);
 }

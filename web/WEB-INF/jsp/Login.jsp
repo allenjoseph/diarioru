@@ -55,7 +55,7 @@
             </div>
         </div>
         <link type="text/css" href="<c_rt:url value="static/css/bootstrap.min.css"/>" rel="stylesheet"/>       
-        <script type="text/javascript" src="<c:url value="static/js/jquery-1.10.2.min.js"/>" ></script>
-        <script type="text/javascript" src="<c:url value="static/js/bootstrap.min.js"/>" ></script>
+        <script type="text/javascript" src="<c_rt:url value="static/js/jquery-1.10.2.min.js"/>" ></script>
+        <script type="text/javascript" src="<c_rt:url value="static/js/bootstrap.min.js"/>" ></script>
     </body>
 </html>

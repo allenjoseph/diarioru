@@ -22,7 +22,7 @@
         <security:authentication-provider>
             <security:jdbc-user-service 
                 data-source-ref="dataSource"
-                users-by-username-query="select u.usuario_id as username, '123456' as password, 'true' as enabled from avelasco.usuario u where u.usuario_id = ?"
+                users-by-username-query="select u.usuario_id as username, '123456' as password, 1 as enabled from avelasco.usuario u where u.usuario_id = ?"
                 authorities-by-username-query="select ur.usuario_id as username, r.nombre as authority from avelasco.usuario_rol ur inner join avelasco.rol r on ur.rol_id = r.rol_id where ur.usuario_id = ?"
             />
             <!--<security:user-service>

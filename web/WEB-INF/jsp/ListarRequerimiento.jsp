@@ -13,10 +13,15 @@
 
     <body>
         <div class="container-fluid">
-            <div class="row-fluid">
-                <header>
-                    <h1>Diario UTI</h1>
-                </header>
+            <div class="row-fluid">                
+                <header>    
+                    <blockquote>
+                        <h1>Diario UTI</h1>
+                        <small>${user}, ${role}</small>
+                    </blockquote>
+                    <a href="<c:url value="/j_spring_security_logout"/>" class="btn btn-danger btn-mini btn-logout">Sacame de aqui!</a>
+                </header>                             
+                <hr/>
             </div>
             <div class="row-fluid">
                 <nav class="span3">

@@ -88,7 +88,8 @@ public class BaseController {
 
     @RequestMapping(value = "/requerimiento-item.html", method = RequestMethod.POST)
     public View insertarRequerimiento(@ModelAttribute("requerimiento") Requerimiento requerimiento) {
-        requerimiento.setRequerimientoId(myBatisService.ObtenerId("requerimiento"));      
+        requerimiento.setRequerimientoId(myBatisService.ObtenerId("requerimiento"));     
+        requerimiento.setCorrelativo(myBatisService.SiguienteCorrelativo(requerimiento.getTipo()));
         requerimientoService.insertar(requerimiento);
         return new RedirectView("requerimiento.html");
     }

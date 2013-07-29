@@ -35,8 +35,6 @@ public class RequerimientoDao extends HibernateDaoSupport {
     }
 
     public void insertar(Requerimiento requerimiento) {
-        Integer correlativo = (Integer) getHibernateTemplate().find("select max(r.correlativo) from Requerimiento r where r.tipo = ?", requerimiento.getTipo()).get(0) + 1;
-        requerimiento.setCorrelativo(correlativo);
         requerimiento.setAnio(Integer.parseInt((new SimpleDateFormat("yyyy")).format(requerimiento.getFecha_creacion())));
         requerimiento.setCodigo(requerimiento.getTipo() + "-" + String.format("%03d", requerimiento.getCorrelativo()) + "-" + requerimiento.getAnio());
         getHibernateTemplate().save(requerimiento);

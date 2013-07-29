@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -8,6 +8,7 @@
     <head>
         <meta charset="UTF-8">
         <link href="static/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="static/css/estilos.css" rel="stylesheet"/>
         <script src="static/js/jquery-1.10.2.min.js"></script>
         <script src="static/js/bootstrap.min.js"></script>
         <title>Diario UTI</title>
@@ -16,13 +17,15 @@
     <body>
         <div class="container-fluid">
             <div class="row-fluid">                
-                <header>                    
-                    <h1>Diario UTI</h1>
-                    <small>${user} - ${role}</small>
-                </header>     
-                <a href="<c:url value="/j_spring_security_logout"/>" class="pull-right btn btn-danger btn-mini ">Sacame de aqui!</a>
-            </div>
-            <hr/>    
+                <header>    
+                    <blockquote>
+                        <h1>Diario UTI</h1>
+                        <small>${user}, ${role}</small>
+                    </blockquote>
+                    <a href="<c:url value="/j_spring_security_logout"/>" class="btn btn-danger btn-mini btn-logout">Sacame de aqui!</a>
+                </header>                             
+                <hr/>
+            </div>                
             <div class="row-fluid">
                 <nav class="span3">
                     <ul class="nav nav-list">
@@ -39,27 +42,27 @@
                     <blockquote>
                         <h3>Nuevo Comentario</h3>
                     </blockquote>
-                    <form:form method="post" action="diario-item.html" class="form-horizontal" commandName="item">
+                    <f:form method="post" action="diario-item.html" class="form-horizontal" commandName="item">
                         <div class="control-group">
                             <label class="control-label" for="inputEmail">Usuario</label>
                             <div class="controls">
-                                <form:select path="usuario.usuarioId" cssClass="input-xlarge">
-                                    <form:options items="${usuarios}" itemValue="usuarioId" itemLabel="nombre" />
-                                </form:select>
+                                <f:select path="usuario.usuarioId" cssClass="input-xlarge">
+                                    <f:options items="${usuarios}" itemValue="usuarioId" itemLabel="nombre" />
+                                </f:select>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="inputPassword">Requerimiento</label>
                             <div class="controls">
-                                <form:select path="requerimiento.requerimientoId">
-                                    <form:options items="${requerimientos}" itemValue="requerimientoId" itemLabel="codigo" />
-                                </form:select>
+                                <f:select path="requerimiento.requerimientoId">
+                                    <f:options items="${requerimientos}" itemValue="requerimientoId" itemLabel="codigo" />
+                                </f:select>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="inputPassword">Comentario</label>
                             <div class="controls">
-                                <form:textarea path="comentario" placeholder="Ingresa tu comentario diario" cssClass="input-xxlarge"/>
+                                <f:textarea path="comentario" placeholder="Ingresa tu comentario diario" cssClass="input-xxlarge"/>
                             </div>
                         </div>
                         <div class="control-group">
@@ -67,25 +70,25 @@
                                 <button type="submit" class="btn btn-success">Registrar Comentario</button>                                
                             </div>
                         </div>
-                    </form:form>
+                    </f:form>
                     <blockquote>
                         <h3>Comentarios</h3>
                     </blockquote>
-                    <form:form method="post" action="listar-item.html" class="form-horizontal" commandName="item2">
+                    <f:form method="post" action="listar-item.html" class="form-horizontal" commandName="item2">
                         <div class="control-group">
                             <label class="control-label" for="inputEmail">Usuario</label>
                             <div class="controls">
-                                <form:select path="usuario.usuarioId" cssClass="input-xlarge">
-                                    <form:options items="${usuarios}" itemValue="usuarioId" itemLabel="nombre" />
-                                </form:select>                                
+                                <f:select path="usuario.usuarioId" cssClass="input-xlarge">
+                                    <f:options items="${usuarios}" itemValue="usuarioId" itemLabel="nombre" />
+                                </f:select>                                
                             </div>
                         </div>   
                         <div class="control-group">
                             <label class="control-label" for="inputPassword">Requerimiento</label>
                             <div class="controls">
-                                <form:select path="requerimiento.requerimientoId">
-                                    <form:options items="${requerimientos}" itemValue="requerimientoId" itemLabel="codigo" />
-                                </form:select>
+                                <f:select path="requerimiento.requerimientoId">
+                                    <f:options items="${requerimientos}" itemValue="requerimientoId" itemLabel="codigo" />
+                                </f:select>
                             </div>
                         </div>
                         <div class="control-group">
@@ -93,7 +96,7 @@
                                 <button type="submit" class="btn">Listar Comentarios</button>                              
                             </div>
                         </div>
-                    </form:form>
+                    </f:form>
                 </section>
             </div>
             <div class="row-fluid">
