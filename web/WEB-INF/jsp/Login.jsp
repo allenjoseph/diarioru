@@ -5,19 +5,26 @@
 <!DOCTYPE HTML>
 <html lang="es">
     <head>
-        <meta charset="UTF-8"/>       
-        <title>Diario UTI</title>
+        <meta charset="UTF-8"/>     
+        <link href="static/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="static/css/estilos.css" rel="stylesheet"/>
+        <script src="static/js/jquery-1.10.2.min.js"></script>
+        <script src="static/js/bootstrap.min.js"></script>
+        <title>DIARIO UTI</title>
     </head>
 
     <body>
         <div class="container">
             <div class="row">
-                <header class="span3">
-                    <h1>Diario UTI</h1>
+                <header class="span12">
+                    <blockquote>
+                        <h1>DIARIO UTI</h1>                        
+                    </blockquote>
                 </header>
+                <hr/>
             </div>            
             <div class="row">
-                <section class="span3">
+                <section class="span12">
                     <form class="form-horizontal" method="POST" action="<c:url value="j_spring_security_check"/>" >
                         <div class="control-group">
                             <label class="control-label" for="inputEmail">Usuario</label>
@@ -39,23 +46,18 @@
                         <div class="control-group">
                             <div class="controls">
                                 <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
-                                    <div class="alert alert-error">
-                                        ${SPRING_SECURITY_LAST_EXCEPTION.message}
-                                    </div>
+                                    <span class="alert alert-error">
+                                        <span>${SPRING_SECURITY_LAST_EXCEPTION.message}</span>
+                                    </span>
                                 </c:if>
                             </div>
-
                         </div>
                     </form>
-                    <p><c:out value="${error}"/></p>
                 </section>
             </div>
             <div class="row-fluid">
                 <footer></footer>
             </div>
         </div>
-        <link type="text/css" href="<c_rt:url value="static/css/bootstrap.min.css"/>" rel="stylesheet"/>       
-        <script type="text/javascript" src="<c:url value="static/js/jquery-1.10.2.min.js"/>" ></script>
-        <script type="text/javascript" src="<c:url value="static/js/bootstrap.min.js"/>" ></script>
     </body>
 </html>

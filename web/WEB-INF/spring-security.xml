@@ -7,15 +7,19 @@
                 http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
     <security:http auto-config="true">
+        <security:intercept-url pattern="/static/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
         <security:intercept-url pattern="/logon.html" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <!--<security:intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY"/>-->
-        <security:intercept-url pattern="/**" access="ROLE_USER,ROLE_ADMIN" />
-        <security:form-login authentication-failure-url="/ups.html" default-target-url="/diario.html" login-page="/logon.html" />	
+        <security:intercept-url pattern="/**" access="ROLE_USER, ROLE_ADMIN" />
+        <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+        
+        <security:form-login authentication-failure-url="/logon.html?login_error=1" default-target-url="/diario.html" login-page="/logon.html" />	
         <security:logout logout-success-url="/logon.html" />
-
+        
+        <!--
         <security:session-management>
             <security:concurrency-control max-sessions="1" expired-url="/sessionoff" error-if-maximum-exceeded="true" />
-        </security:session-management>
+        </security:session-management>-->
     </security:http>
 
     <security:authentication-manager>

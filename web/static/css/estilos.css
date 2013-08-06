@@ -1,0 +1,14 @@
+/* 
+    Document   : estilos
+    Created on : 28/07/2013, 10:01:14 AM
+    Author     : allen
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.btn-logout { 
+    position: absolute !important;
+    top: 20px;
+    right: 20px;
+}
+
