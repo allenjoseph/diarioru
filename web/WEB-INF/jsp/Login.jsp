@@ -5,19 +5,20 @@
 <!DOCTYPE HTML>
 <html lang="es">
     <head>
-        <meta charset="UTF-8"/>       
+        <meta charset="UTF-8"/>           
         <title>Diario UTI</title>
     </head>
-
     <body>
         <div class="container">
             <div class="row">
-                <header class="span3">
-                    <h1>Diario UTI</h1>
-                </header>
+                <blockquote>
+                    <header class="span12">
+                        <h1>DIARIO UTI</h1>
+                    </header>
+                </blockquote>                
             </div>            
             <div class="row">
-                <section class="span3">
+                <section class="span12">
                     <form class="form-horizontal" method="POST" action="<c:url value="j_spring_security_check"/>" >
                         <div class="control-group">
                             <label class="control-label" for="inputEmail">Usuario</label>
@@ -38,8 +39,8 @@
                         </div>
                         <div class="control-group">
                             <div class="controls">
-                                <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
-                                    <div class="alert alert-error">
+                                <c:if test="${not empty error}">
+                                    <div class="alert alert-error span3" style="margin-left: 0">
                                         ${SPRING_SECURITY_LAST_EXCEPTION.message}
                                     </div>
                                 </c:if>
@@ -47,15 +48,14 @@
 
                         </div>
                     </form>
-                    <p><c:out value="${error}"/></p>
                 </section>
             </div>
             <div class="row-fluid">
                 <footer></footer>
             </div>
-        </div>
-        <link type="text/css" href="<c_rt:url value="static/css/bootstrap.min.css"/>" rel="stylesheet"/>       
-        <script type="text/javascript" src="<c_rt:url value="static/js/jquery-1.10.2.min.js"/>" ></script>
-        <script type="text/javascript" src="<c_rt:url value="static/js/bootstrap.min.js"/>" ></script>
+        </div>        
+        <link type="text/css" href="<c:url value="static/css/bootstrap.min.css"/>" rel="stylesheet"/>       
+        <script type="text/javascript" src="<c:url value="static/js/jquery-1.10.2.min.js"/>" ></script>
+        <script type="text/javascript" src="<c:url value="static/js/bootstrap.min.js"/>" ></script>
     </body>
 </html>

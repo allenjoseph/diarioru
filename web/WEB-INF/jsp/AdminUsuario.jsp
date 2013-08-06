@@ -7,10 +7,10 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <link href="static/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="static/css/estilos.css" rel="stylesheet"/>
-        <script src="static/js/jquery-1.10.2.min.js"></script>
-        <script src="static/js/bootstrap.min.js"></script>
+        <link href="../static/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="../static/css/estilos.css" rel="stylesheet"/>
+        <script src="../static/js/jquery-1.10.2.min.js"></script>
+        <script src="../static/js/bootstrap.min.js"></script>
         <title>Diario UTI</title>
     </head>
 
@@ -29,48 +29,40 @@
             <div class="row-fluid">
                 <nav class="span3">
                     <ul class="nav nav-list">
-                        <li class="nav-header">Requerimiento</li>
-                        <li><a href="diario.html">comentario diario</a></li>
-                        <li class="active"><a href="requerimiento.html">generar requerimiento</a></li>
-                        <li class="nav-header">Retrospectiva</li>
-                        <li><a href="#">lo bueno</a></li>
-                        <li><a href="#">lo feo o malo</a></li>
-                        <li><a href="#">sugerencias e ideas</a></li>
+                        <li class="nav-header">Usuario</li>
+                        <li class="active"><a href="diario.html">Adminintrar usuario</a></li>
                     </ul>
                 </nav>
                 <section class="span9">
                     <blockquote>
-                        <h3>Nuevo Requerimiento</h3>
+                        <h3>Nuevo Usuario</h3>
                     </blockquote>
-                    <f:form method="post" action="requerimiento-item.html" class="form-horizontal" commandName="requerimiento">
+                    <f:form method="post" action="usuario-item.html" class="form-horizontal" commandName="usuario">
                         <div class="control-group">
-                            <label class="control-label" >Tipo</label>
+                            <label class="control-label" >Nombre</label>
                             <div class="controls">
-                                <f:select path="tipo" cssClass="input-xlarge">
-                                    <option value="RU">REQUERIMIENTO DE USUARIO</option>
-                                    <option value="RE">REQUERIMIENTO DE ERROR</option>
-                                </f:select>
+                                <f:input path="nombre" placeholder="Ingresa el nombre completo" cssClass="input-xlarge"/>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" >Titulo</label>
+                            <label class="control-label" >Usuario</label>
                             <div class="controls">
-                                <f:textarea path="titulo" placeholder="Ingresa el titulo para el requerimiento" cssClass="input-xxlarge"/>
+                                <f:input path="usuarioId" placeholder="Ingresa nombre de usuario" cssClass="input-xlarge"/>
                             </div>
                         </div>
                         <div class="control-group">
                             <div class="controls">
-                                <button type="submit" class="btn btn-success">Registrar Requerimiento</button>                                
+                                <button type="submit" class="btn btn-success">Registrar Usuario</button>                                
                             </div>
                         </div>
                     </f:form>
                     <blockquote>
-                        <h3>Requerimientos</h3>
+                        <h3>Usuarios</h3>
                     </blockquote>
-                    <f:form method="post" action="listar-requerimiento.html" class="form-horizontal">      
+                    <f:form method="post" action="listar-usuarios.html" class="form-horizontal">      
                         <div class="control-group">
                             <div class="controls">
-                                <button type="submit" class="btn">Listar Requerimientos</button>                              
+                                <button type="submit" class="btn">Listar Usuarios</button>                              
                             </div>
                         </div>
                     </f:form>

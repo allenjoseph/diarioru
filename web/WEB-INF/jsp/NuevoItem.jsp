@@ -19,7 +19,7 @@
             <div class="row-fluid">                
                 <header>    
                     <blockquote>
-                        <h1>Diario UTI</h1>
+                        <h1>DIARIO UTI</h1>
                         <small>${user}, ${role}</small>
                     </blockquote>
                     <a href="<c:url value="/j_spring_security_logout"/>" class="btn btn-danger btn-mini btn-logout">Sacame de aqui!</a>
