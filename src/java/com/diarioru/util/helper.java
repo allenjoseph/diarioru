@@ -7,9 +7,6 @@ package com.diarioru.util;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -20,14 +17,5 @@ public class helper {
     
     static String formatearFecha(Calendar fecha){
         return dateFormat.format(fecha);
-    }
-    
-    public static ModelAndView crearModelo(String view) {
-        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        ModelAndView modelo = new ModelAndView(view);               
-        modelo.addObject("user", user.getUsername());
-        modelo.addObject("role", user.getAuthorities().iterator().next().getAuthority());
-        
-        return modelo;
     }
 }

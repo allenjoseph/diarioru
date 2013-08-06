@@ -4,10 +4,9 @@
  */
 package com.diarioru.negocio;
 
-import com.diarioru.dao.ItemdiarioDao;
+import com.diarioru.dao.ItemdiarioDaoInterface;
 import com.diarioru.entidades.Itemdiario;
 import com.diarioru.entidades.Requerimiento;
-import com.diarioru.entidades.Usuario;
 import com.diarioru.to.ItemdiarioTO;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class ItemDiarioImplements implements ItemDiarioInterface {
 
     @Autowired
-    private ItemdiarioDao itemDiarioDAO;
+    private ItemdiarioDaoInterface itemDiarioDAO;
 
     @Override
     public void insertar(Itemdiario itemdiario) {

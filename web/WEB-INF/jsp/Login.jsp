@@ -5,17 +5,23 @@
 <!DOCTYPE HTML>
 <html lang="es">
     <head>
-        <meta charset="UTF-8"/>           
-        <title>Diario UTI</title>
+        <meta charset="UTF-8"/>     
+        <link href="static/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="static/css/estilos.css" rel="stylesheet"/>
+        <script src="static/js/jquery-1.10.2.min.js"></script>
+        <script src="static/js/bootstrap.min.js"></script>
+        <title>DIARIO UTI</title>
     </head>
+
     <body>
         <div class="container">
             <div class="row">
-                <blockquote>
-                    <header class="span12">
-                        <h1>DIARIO UTI</h1>
-                    </header>
-                </blockquote>                
+                <header class="span12">
+                    <blockquote>
+                        <h1>DIARIO UTI</h1>                        
+                    </blockquote>
+                </header>
+                <hr/>
             </div>            
             <div class="row">
                 <section class="span12">
@@ -39,13 +45,12 @@
                         </div>
                         <div class="control-group">
                             <div class="controls">
-                                <c:if test="${not empty error}">
-                                    <div class="alert alert-error span3" style="margin-left: 0">
-                                        ${SPRING_SECURITY_LAST_EXCEPTION.message}
-                                    </div>
+                                <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
+                                    <span class="alert alert-error">
+                                        <span>${SPRING_SECURITY_LAST_EXCEPTION.message}</span>
+                                    </span>
                                 </c:if>
                             </div>
-
                         </div>
                     </form>
                 </section>
@@ -53,9 +58,6 @@
             <div class="row-fluid">
                 <footer></footer>
             </div>
-        </div>        
-        <link type="text/css" href="<c:url value="static/css/bootstrap.min.css"/>" rel="stylesheet"/>       
-        <script type="text/javascript" src="<c:url value="static/js/jquery-1.10.2.min.js"/>" ></script>
-        <script type="text/javascript" src="<c:url value="static/js/bootstrap.min.js"/>" ></script>
+        </div>
     </body>
 </html>

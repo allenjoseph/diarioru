@@ -7,12 +7,14 @@ package com.diarioru.controladores;
 import com.diarioru.entidades.Itemdiario;
 import com.diarioru.entidades.Requerimiento;
 import com.diarioru.servicios.ItemDiarioService;
+import com.diarioru.servicios.ItemDiarioServiceInterface;
 import com.diarioru.servicios.MyBatisService;
 import com.diarioru.servicios.RequerimientoService;
 import com.diarioru.servicios.UsuarioService;
-import com.diarioru.util.helper;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +35,7 @@ public class BaseController {
     @Autowired
     private RequerimientoService requerimientoService;
     @Autowired
-    private ItemDiarioService itemDiarioService;
+    private ItemDiarioServiceInterface itemDiarioService;
     @Autowired
     private MyBatisService myBatisService;
 
@@ -42,8 +44,9 @@ public class BaseController {
     }
     
     @RequestMapping(value = "/diario.html", method = RequestMethod.GET)
-    public ModelAndView itemdario() {        
-        ModelAndView modelo = helper.crearModelo("NuevoItem");             
+    public ModelAndView itemdario() {
+        ModelAndView modelo = new ModelAndView("NuevoItem");
+        agregarUsuario(modelo);
         modelo.addObject("item", new Itemdiario());
         modelo.addObject("item2", new Itemdiario());
         modelo.addObject("requerimientos", requerimientoService.listarRequerimientos());
@@ -53,14 +56,16 @@ public class BaseController {
 
     @RequestMapping(value = "/requerimiento.html", method = RequestMethod.GET)
     public ModelAndView requerimiento() {
-        ModelAndView modelo = helper.crearModelo("NuevoRequerimiento");     
+        ModelAndView modelo = new ModelAndView("NuevoRequerimiento");
+        agregarUsuario(modelo);
         modelo.addObject("requerimiento", new Requerimiento());
         return modelo;
     }
 
     @RequestMapping(value = "/listar-item.html", method = RequestMethod.POST)
     public ModelAndView listarItems(@ModelAttribute("item2") Itemdiario item) {
-        ModelAndView modelo = helper.crearModelo("ListarItem");     
+        ModelAndView modelo = new ModelAndView("ListarItem");
+        agregarUsuario(modelo);
         modelo.addObject("requerimientos", requerimientoService.listarRequerimientos());
         modelo.addObject("usuarios", usuarioService.listarUsuarios());
         modelo.addObject("items", itemDiarioService.listarItems(item.getUsuario().getUsuarioId(),item.getRequerimiento().getRequerimientoId()));
@@ -69,7 +74,8 @@ public class BaseController {
     
     @RequestMapping(value = "/listar-requerimiento.html", method = RequestMethod.POST)
     public ModelAndView listarRequerimientos() {
-        ModelAndView modelo = helper.crearModelo("ListarRequerimiento");     
+        ModelAndView modelo = new ModelAndView("ListarRequerimiento");
+        agregarUsuario(modelo);
         modelo.addObject("requerimientos", requerimientoService.listarRequerimientos());
         return modelo;
     }
@@ -87,5 +93,11 @@ public class BaseController {
         requerimiento.setCorrelativo(myBatisService.SiguienteCorrelativo(requerimiento.getTipo()));
         requerimientoService.insertar(requerimiento);
         return new RedirectView("requerimiento.html");
-    }    
+    }
+
+    private void agregarUsuario(ModelAndView modelo) {
+        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();        
+        modelo.addObject("user", user.getUsername());
+        modelo.addObject("role", user.getAuthorities().iterator().next().getAuthority());
+    }
 }
