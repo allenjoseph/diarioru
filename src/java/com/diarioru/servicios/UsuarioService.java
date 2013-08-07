@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  * @author allen
  */
 @Service
-public class UsuarioService {
+public class UsuarioService implements UsuarioServiceInterface{
     
     @Autowired
     private UsuarioInterface usuarioInterface;
@@ -23,14 +23,17 @@ public class UsuarioService {
     public UsuarioService() {
     }    
     
+    @Override
     public List<Usuario> listarUsuarios() {
         return usuarioInterface.listarUsuarios();
     }
 
+    @Override
     public UsuarioInterface getUsuarioInterface() {
         return usuarioInterface;
     }
 
+    @Override
     public void setUsuarioInterface(UsuarioInterface usuarioInterface) {
         this.usuarioInterface = usuarioInterface;
     }       

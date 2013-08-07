@@ -4,7 +4,7 @@
  */
 package com.diarioru.negocio;
 
-import com.diarioru.dao.UsuarioDao;
+import com.diarioru.dao.UsuarioDaoInterface;
 import com.diarioru.entidades.Usuario;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class UsuarioImplements implements UsuarioInterface{
 
     @Autowired
-    private UsuarioDao usuarioDAO;
+    private UsuarioDaoInterface usuarioDAO;
     
     @Override
     public List<Usuario> listarUsuarios() {

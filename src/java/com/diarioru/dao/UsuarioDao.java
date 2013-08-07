@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author allen
  */
 @Repository
-public class UsuarioDao extends HibernateDaoSupport{
+public class UsuarioDao extends HibernateDaoSupport implements UsuarioDaoInterface{
 
     @Autowired
     public UsuarioDao(SessionFactory sessionFactory) {
@@ -25,6 +25,7 @@ public class UsuarioDao extends HibernateDaoSupport{
     }
     
     @Transactional
+    @Override
     public List<Usuario> getListUsuarios(){
         return getHibernateTemplate().find("select u from Usuario u");
     }

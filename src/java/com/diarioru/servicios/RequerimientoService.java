@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  * @author allen
  */
 @Service
-public class RequerimientoService {
+public class RequerimientoService implements RequerimientoServiceInterface{
 
     @Autowired
     private RequerimientoInterface requerimientoInterface;
@@ -23,22 +23,27 @@ public class RequerimientoService {
     public RequerimientoService() {
     }
 
+    @Override
     public List<Requerimiento> listarRequerimientos() {
         return requerimientoInterface.listarRequerimientos();
     }
 
+    @Override
     public Integer obtenerId() {
         return this.requerimientoInterface.obtenerId();
     }
 
+    @Override
     public RequerimientoInterface getRequerimientoInterface() {
         return requerimientoInterface;
     }
 
+    @Override
     public void setRequerimientoInterface(RequerimientoInterface requerimientoInterface) {
         this.requerimientoInterface = requerimientoInterface;
     }
 
+    @Override
     public void insertar(Requerimiento requerimiento) {
         this.requerimientoInterface.insertar(requerimiento);        
     }

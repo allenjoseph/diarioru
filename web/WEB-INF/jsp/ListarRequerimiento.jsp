@@ -9,7 +9,7 @@
         <link href="static/css/estilos.css" rel="stylesheet"/>
         <script src="static/js/jquery-1.10.2.min.js"></script>
         <script src="static/js/bootstrap.min.js"></script>
-        <title>Diario UTI</title>
+        <title>DIARIO UTI</title>
     </head>
 
     <body>

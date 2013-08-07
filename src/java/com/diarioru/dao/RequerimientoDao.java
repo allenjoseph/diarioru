@@ -19,27 +19,31 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class RequerimientoDao extends HibernateDaoSupport {
+public class RequerimientoDao extends HibernateDaoSupport implements RequerimientoDaoInterface{
 
     @Autowired
     public RequerimientoDao(SessionFactory sessionFactory) {
         super.setSessionFactory(sessionFactory);
     }
 
+    @Override
     public List<Requerimiento> getListRequerimientos() {
         return getHibernateTemplate().find("select r from Requerimiento r order by r.fecha_creacion");
     }
 
+    @Override
     public Integer obtenerId() {
         return (Integer) (getHibernateTemplate().find("select max(r.requerimientoId) from Requerimiento r")).get(0) + 1;
     }
 
+    @Override
     public void insertar(Requerimiento requerimiento) {
         requerimiento.setAnio(Integer.parseInt((new SimpleDateFormat("yyyy")).format(requerimiento.getFecha_creacion())));
         requerimiento.setCodigo(requerimiento.getTipo() + "-" + String.format("%03d", requerimiento.getCorrelativo()) + "-" + requerimiento.getAnio());
         getHibernateTemplate().save(requerimiento);
     }
 
+    @Override
     public String obtenerCodigo(String tipo) {
         return "";
     }

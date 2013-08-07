@@ -6,17 +6,22 @@ package com.diarioru.controladores;
 
 import com.diarioru.entidades.Itemdiario;
 import com.diarioru.entidades.Requerimiento;
-import com.diarioru.servicios.ItemDiarioService;
-import com.diarioru.servicios.MyBatisService;
-import com.diarioru.servicios.RequerimientoService;
-import com.diarioru.servicios.UsuarioService;
-import com.diarioru.util.helper;
+import com.diarioru.entidades.Usuario;
+import com.diarioru.servicios.ItemDiarioServiceInterface;
+import com.diarioru.servicios.MyBatisServiceInterface;
+import com.diarioru.servicios.RequerimientoServiceInterface;
+import com.diarioru.servicios.UsuarioServiceInterface;
+import com.diarioru.to.UsuarioTO;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.diarioru.util.helper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
@@ -29,13 +34,13 @@ import org.springframework.web.servlet.view.RedirectView;
 public class BaseController {
 
     @Autowired
-    private UsuarioService usuarioService;
+    private UsuarioServiceInterface usuarioService;
     @Autowired
-    private RequerimientoService requerimientoService;
+    private RequerimientoServiceInterface requerimientoService;
     @Autowired
-    private ItemDiarioService itemDiarioService;
+    private ItemDiarioServiceInterface itemDiarioService;
     @Autowired
-    private MyBatisService myBatisService;
+    private MyBatisServiceInterface myBatisService;
 
     @PostConstruct
     void cargarDatos() {
@@ -56,6 +61,16 @@ public class BaseController {
         ModelAndView modelo = helper.crearModelo("NuevoRequerimiento");     
         modelo.addObject("requerimiento", new Requerimiento());
         return modelo;
+    }
+    
+    @RequestMapping(value = "/obtenerUsuarios.json", method = RequestMethod.GET)
+    public @ResponseBody List<UsuarioTO> obtenerListaUsuarios(){   
+        List<UsuarioTO> listaUsuarios = new ArrayList<UsuarioTO>();
+         for(Usuario usuario : usuarioService.listarUsuarios()){
+             UsuarioTO u = new UsuarioTO(usuario.getUsuarioId(),usuario.getNombre());
+             listaUsuarios.add(u);
+         }        
+        return listaUsuarios;
     }
 
     @RequestMapping(value = "/listar-item.html", method = RequestMethod.POST)

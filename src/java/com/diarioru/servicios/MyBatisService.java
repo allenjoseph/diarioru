@@ -15,11 +15,12 @@ import org.springframework.stereotype.Service;
  * @author dev-pai-20
  */
 @Service
-public class MyBatisService {
+public class MyBatisService implements MyBatisServiceInterface{
     
     @Autowired
     private MyBatisMapperInterface mapper;
 
+    @Override
     public Integer ObtenerId(String tabla) {
         ParamObtenerId param = new ParamObtenerId();
         param.setNombre_tabla(tabla);
@@ -27,6 +28,7 @@ public class MyBatisService {
         return param.getNext_val();
     }   
     
+    @Override
     public Integer SiguienteCorrelativo(String tipo){
         ParamSiguienteCorrelativo param = new ParamSiguienteCorrelativo();
         param.setTipo_requerimiento(tipo);

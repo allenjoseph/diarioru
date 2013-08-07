@@ -6,7 +6,6 @@ package com.diarioru.dao;
 
 import com.diarioru.entidades.Itemdiario;
 import com.diarioru.entidades.Requerimiento;
-import com.diarioru.entidades.Usuario;
 import com.diarioru.to.ItemdiarioTO;
 import java.util.List;
 import org.hibernate.Query;
@@ -24,13 +23,14 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class ItemdiarioDao extends HibernateDaoSupport {
+public class ItemdiarioDao extends HibernateDaoSupport implements ItemdiarioDaoInterface {
 
     @Autowired
     public ItemdiarioDao(SessionFactory sessionFactory) {
         super.setSessionFactory(sessionFactory);
     }
 
+    @Override
     public List<ItemdiarioTO> getListItemdiario(String usuario) {
         //UTILIZANDO OBJETOS TO PARA LISTAR LOS ITEMS DIARIOS
         Session session = getHibernateTemplate().getSessionFactory().openSession();
@@ -48,18 +48,22 @@ public class ItemdiarioDao extends HibernateDaoSupport {
         return consulta.list();
     }
 
+    @Override
     public List<Itemdiario> getListItemdiario(Requerimiento requerimiento) {
         return getHibernateTemplate().find("select i from Itemdiario i where i.requerimiento = ?", requerimiento);
     }
     
+    @Override
     public List<Itemdiario> getListItemdiario(String usuario_id,Integer requerimiento_id) {
         return getHibernateTemplate().find("select i from Itemdiario i where i.requerimiento.requerimientoId = ? and i.usuario.usuarioId = ?", requerimiento_id,usuario_id);
     }
 
-    public void insertarEnBase(Itemdiario itemdiario) {
+    @Override
+    public void insertarEnBase(Itemdiario itemdiario) {        
         getHibernateTemplate().save(itemdiario);
     }
 
+    @Override
     public Integer obtenerId() {
         return (Integer) (getHibernateTemplate().find("select max(i.itemdiarioId) from Itemdiario i")).get(0) + 1;
     }

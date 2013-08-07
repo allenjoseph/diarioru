@@ -15,10 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
  * @author allen
  */
 @Controller
-@RequestMapping("/admin")
+@RequestMapping(value = "/admin")
 public class AdminController {
     
-    @RequestMapping("/usuario.html")
+    @RequestMapping(value = "/usuario.html")
     public ModelAndView usuario(){
         ModelAndView modelo = helper.crearModelo("AdminUsuario");  
         modelo.addObject("usuario", new Usuario());

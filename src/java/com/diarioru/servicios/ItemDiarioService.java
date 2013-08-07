@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  * @author allen
  */
 @Service
-public class ItemDiarioService {
+public class ItemDiarioService implements ItemDiarioServiceInterface{
     
     @Autowired
     private ItemDiarioInterface diarioInterface;    
@@ -25,30 +25,37 @@ public class ItemDiarioService {
     public ItemDiarioService() {
     }
 
+    @Override
     public void insertar(Itemdiario itemdiario) {
         diarioInterface.insertar(itemdiario);
     }
 
+    @Override
     public List<ItemdiarioTO> listarItems(String usuario) {
         return diarioInterface.listarItems(usuario);
     }
 
+    @Override
     public List<Itemdiario> listarItems(Requerimiento requerimiento) {
         return diarioInterface.listarItems(requerimiento);
     }
 
+    @Override
     public Integer obtenerId() {
         return diarioInterface.obtenerId();
     }
 
+    @Override
     public List<Itemdiario> listarItems(String usuario_id, Integer requerimiento_id) {
         return diarioInterface.listarItems(usuario_id, requerimiento_id);
     }
     
+    @Override
     public ItemDiarioInterface getDiarioInterface() {
         return diarioInterface;
     }
 
+    @Override
     public void setDiarioInterface(ItemDiarioInterface diarioInterface) {
         this.diarioInterface = diarioInterface;
     }
