@@ -7,8 +7,16 @@
 */
 
 .btn-logout { 
-    position: fixed;
+    position: absolute !important;
     top: 20px;
     right: 20px;
+}
+
+.creditos{
+    color: #A09F9F;
+    font-size: 10px;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
 }
 

@@ -10,23 +10,23 @@ package com.diarioru.to;
  */
 public class UsuarioTO {
     
-    private String usuarioId;    
+    private String codigo;    
     private String nombre;
 
     public UsuarioTO() {
     }
     
-    public UsuarioTO(String usuarioId, String nombre) {
-        this.usuarioId = usuarioId;
+    public UsuarioTO(String codigo, String nombre) {
+        this.codigo = codigo;
         this.nombre = nombre;
     }
 
-    public String getUsuarioId() {
-        return usuarioId;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setUsuarioId(String usuarioId) {
-        this.usuarioId = usuarioId;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getNombre() {

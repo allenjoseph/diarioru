@@ -27,7 +27,6 @@
     class="org.springframework.web.servlet.view.InternalResourceViewResolver"
     p:prefix="/WEB-INF/jsp/"
     p:suffix=".jsp" />-->
-    
     <!--CONFIGURAMOS EN VIEW RESOLVER PARA RESOLVER LAS URLS DE MI APLICACION CON JACKSON-->
     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
         <property name="mediaTypes">

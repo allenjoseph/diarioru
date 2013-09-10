@@ -10,20 +10,21 @@
         <link href="static/css/estilos.css" rel="stylesheet"/>
         <script src="static/js/jquery-1.10.2.min.js"></script>
         <script src="static/js/bootstrap.min.js"></script>
-        <title>DIARIO UTI</title>
+        <title>RU</title>
     </head>
+
     <body>
         <div class="container">
             <div class="row">
                 <header class="span12">
                     <blockquote>
-                        <h1>DIARIO UTI</h1>                        
+                        <h1>RU</h1>                        
                     </blockquote>
                 </header>
                 <hr/>
             </div>            
             <div class="row">
-                <section class="span12">
+                <section class="well">
                     <form class="form-horizontal" method="POST" action="<c:url value="j_spring_security_check"/>" >
                         <div class="control-group">
                             <label class="control-label" for="inputEmail">Usuario</label>
@@ -44,19 +45,18 @@
                         </div>
                         <div class="control-group">
                             <div class="controls">
-                                <c:if test="${not empty error}">
-                                    <div class="alert alert-error span3" style="margin-left: 0">
-                                        ${SPRING_SECURITY_LAST_EXCEPTION.message}
-                                    </div>
+                                <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
+                                    <span class="alert alert-error">
+                                        <span>${SPRING_SECURITY_LAST_EXCEPTION.message}</span>
+                                    </span>
                                 </c:if>
                             </div>
-
                         </div>
                     </form>
                 </section>
             </div>
             <div class="row-fluid">
-                <footer></footer>
+                <jsp:include page="tags/Footer.jsp"/>
             </div>
         </div>
     </body>

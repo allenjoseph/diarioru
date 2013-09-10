@@ -27,6 +27,11 @@ public class RequerimientoService implements RequerimientoServiceInterface{
     public List<Requerimiento> listarRequerimientos() {
         return requerimientoInterface.listarRequerimientos();
     }
+    
+    @Override
+    public List<Requerimiento> filtrarRequerimientos(String usuario) {
+        return requerimientoInterface.filtrarRequerimientos(usuario);
+    }
 
     @Override
     public Integer obtenerId() {
@@ -34,17 +39,15 @@ public class RequerimientoService implements RequerimientoServiceInterface{
     }
 
     @Override
+    public void insertar(Requerimiento requerimiento) {
+        this.requerimientoInterface.insertar(requerimiento);        
+    }
+    
     public RequerimientoInterface getRequerimientoInterface() {
         return requerimientoInterface;
     }
 
-    @Override
     public void setRequerimientoInterface(RequerimientoInterface requerimientoInterface) {
         this.requerimientoInterface = requerimientoInterface;
-    }
-
-    @Override
-    public void insertar(Requerimiento requerimiento) {
-        this.requerimientoInterface.insertar(requerimiento);        
     }
 }

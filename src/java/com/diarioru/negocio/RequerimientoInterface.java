@@ -19,4 +19,6 @@ public interface RequerimientoInterface {
 
     public void insertar(Requerimiento requerimiento);
     
+    public List<Requerimiento> filtrarRequerimientos(String usuario);
+    
 }

@@ -5,7 +5,6 @@
 package com.diarioru.servicios;
 
 import com.diarioru.entidades.Requerimiento;
-import com.diarioru.negocio.RequerimientoInterface;
 import java.util.List;
 
 /**
@@ -18,9 +17,7 @@ public interface RequerimientoServiceInterface {
 
     public Integer obtenerId();
 
-    public RequerimientoInterface getRequerimientoInterface();
-
-    public void setRequerimientoInterface(RequerimientoInterface requerimientoInterface);
-
     public void insertar(Requerimiento requerimiento);
+    
+    public List<Requerimiento> filtrarRequerimientos(String usuario);
 }

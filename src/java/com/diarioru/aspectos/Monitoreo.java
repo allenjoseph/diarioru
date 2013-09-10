@@ -4,7 +4,7 @@
  */
 package com.diarioru.aspectos;
 
-import com.diarioru.entidades.Itemdiario;
+import com.diarioru.entidades.Comentario;
 import java.util.List;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -30,13 +30,13 @@ public class Monitoreo {
     }
     
     @Around("execution(java.util.List com.diarioru.servicios.RequerimientoServiceInterface.listarRequerimientos())")
-    public List<Itemdiario> modificaListaItemDiario(ProceedingJoinPoint joinPoint) throws Throwable {
+    public List<Comentario> modificaListaItemDiario(ProceedingJoinPoint joinPoint) throws Throwable {
         System.out.println("******** MONITOREO POR ASPECTOS **********************************************************");
         Object lista = joinPoint.getArgs();
         System.out.println(lista.toString());        
-        List<Itemdiario> listaItems = (List<Itemdiario>) joinPoint.proceed();
-        System.out.println("Cantidad de items : " + listaItems.size());
+        List<Comentario> listaComentarios = (List<Comentario>) joinPoint.proceed();
+        System.out.println("Cantidad de items : " + listaComentarios.size());
         System.out.println("******************************************************************************************");        
-        return listaItems;
+        return listaComentarios;
     }
 }

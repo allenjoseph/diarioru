@@ -8,6 +8,7 @@ import com.diarioru.dao.UsuarioDaoInterface;
 import com.diarioru.entidades.Usuario;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,6 +24,11 @@ public class UsuarioImplements implements UsuarioInterface{
     @Override
     public List<Usuario> listarUsuarios() {
         return usuarioDAO.getListUsuarios();
-    }   
+    }  
+    
+    @Override
+    public void insertarUsuario(Usuario usuario) throws DataAccessException{
+        usuarioDAO.insertarEnBase(usuario);
+    }
     
 }

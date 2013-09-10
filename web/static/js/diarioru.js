@@ -4,7 +4,13 @@
  */
 
 $(function(){
-
+    $.ajax({
+        url : '/obtenerUsuarios.json',
+        dataType : 'json',
+        success : function(data){
+            alert(data);
+        }
+    });
 });
 
 

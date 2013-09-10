@@ -34,5 +34,10 @@ public class RequerimientoImplements implements RequerimientoInterface{
     public void insertar(Requerimiento requerimiento) {
         requerimientoDAO.insertar(requerimiento);
     }
+
+    @Override
+    public List<Requerimiento> filtrarRequerimientos(String usuario) {
+        return requerimientoDAO.filtrarRequerimientos(usuario);
+    }
     
 }

@@ -20,4 +20,6 @@ public interface RequerimientoDaoInterface {
     public void insertar(Requerimiento requerimiento);
 
     public String obtenerCodigo(String tipo);
+    
+    public List<Requerimiento> filtrarRequerimientos(String usuario);
 }

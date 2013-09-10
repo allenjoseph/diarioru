@@ -8,6 +8,7 @@ import com.diarioru.entidades.Usuario;
 import com.diarioru.negocio.UsuarioInterface;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,13 +28,16 @@ public class UsuarioService implements UsuarioServiceInterface{
     public List<Usuario> listarUsuarios() {
         return usuarioInterface.listarUsuarios();
     }
-
+    
     @Override
+    public void insertarUsuario(Usuario usuario) throws DataAccessException{
+        usuarioInterface.insertarUsuario(usuario);
+    }
+
     public UsuarioInterface getUsuarioInterface() {
         return usuarioInterface;
     }
 
-    @Override
     public void setUsuarioInterface(UsuarioInterface usuarioInterface) {
         this.usuarioInterface = usuarioInterface;
     }       

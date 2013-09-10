@@ -14,4 +14,6 @@ import java.util.List;
 public interface UsuarioDaoInterface {
 
     public List<Usuario> getListUsuarios();
+    
+    public void insertarEnBase(Usuario usuario);
 }

@@ -5,7 +5,6 @@
 package com.diarioru.servicios;
 
 import com.diarioru.entidades.Usuario;
-import com.diarioru.negocio.UsuarioInterface;
 import java.util.List;
 
 /**
@@ -15,8 +14,7 @@ import java.util.List;
 public interface UsuarioServiceInterface {
     
     public List<Usuario> listarUsuarios();
+    
+    public void insertarUsuario(Usuario usuario);
 
-    public UsuarioInterface getUsuarioInterface();
-
-    public void setUsuarioInterface(UsuarioInterface usuarioInterface);
 }
