@@ -5,88 +5,77 @@
 package com.diarioru.entidades;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
  *
- * @author allen
+ * @author dev-pai-20
  */
 @Entity
-@Table(name = "REQUERIMIENTO", schema = "avelasco")
+@Table(name = "UTDREPA", schema = "UTP")
 @NamedQueries({
     @NamedQuery(name = "Requerimiento.findAll", query = "SELECT r FROM Requerimiento r"),
-    @NamedQuery(name = "Requerimiento.findByRequerimientoId", query = "SELECT r FROM Requerimiento r WHERE r.requerimientoId = :requerimientoId"),
-    @NamedQuery(name = "Requerimiento.findByCodigo", query = "SELECT r FROM Requerimiento r WHERE r.codigo = :codigo"),
-    @NamedQuery(name = "Requerimiento.findByTitulo", query = "SELECT r FROM Requerimiento r WHERE r.titulo = :titulo")})
+    @NamedQuery(name = "Requerimiento.findByCCodreq", query = "SELECT r FROM Requerimiento r WHERE r.codigo = :codigo"),
+    @NamedQuery(name = "Requerimiento.findByCDesreq", query = "SELECT r FROM Requerimiento r WHERE r.descripcion = :descripcion"),
+    @NamedQuery(name = "Requerimiento.findByDFecreq", query = "SELECT r FROM Requerimiento r WHERE r.fecha_creacion = :fecha_creacion"),
+    @NamedQuery(name = "Requerimiento.findByNValreq", query = "SELECT r FROM Requerimiento r WHERE r.valor = :valor"),
+    @NamedQuery(name = "Requerimiento.findByCCodest", query = "SELECT r FROM Requerimiento r WHERE r.estado = :estado"),
+    @NamedQuery(name = "Requerimiento.findByCReqcod", query = "SELECT r FROM Requerimiento r WHERE r.tipo = :tipo")})
 public class Requerimiento implements Serializable {
     private static final long serialVersionUID = 1L;
-    
     @Id
     @Basic(optional = false)
-    @Column(name = "requerimiento_id")
-    private Integer requerimientoId;
-    
-    @Basic(optional = false)
-    @Column(name = "codigo")
+    @Column(name = "C_CODREQ")
     private String codigo;
     
     @Basic(optional = false)
-    @Column(name = "titulo")
-    private String titulo;
+    @Column(name = "C_DESREQ")
+    private String descripcion;
     
     @Basic(optional = false)
-    @Column(name = "tipo")
-    private String tipo;
-    
-    @Basic(optional = false)
-    @Column(name = "correlativo")
-    private Integer correlativo;
-    
-    @Basic(optional = false)
-    @Column(name = "anio")
-    private Integer anio;
-    
-    @Basic(optional = false)
-    @Column(name = "fecha_creacion")
-    @Temporal(TemporalType.DATE)
+    @Column(name = "D_FECREQ")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha_creacion;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requerimiento")
-    private List<Itemdiario> itemdiarioList;
+    @Basic(optional = false)
+    @Column(name = "N_VALREQ")
+    private int valor;
+    
+    @Basic(optional = false)
+    @Column(name = "C_CODEST")
+    private String estado;
+    
+    @Column(name = "C_REQCOD")
+    private String tipo;
+    
+    @JoinColumn(name = "C_CODUSU", referencedColumnName = "C_CODUSU")
+    @ManyToOne(optional = false)
+    private Usuario usuario;
 
     public Requerimiento() {
-        this.fecha_creacion = new Date();
     }
 
-    public Requerimiento(Integer requerimientoId) {
-        this.requerimientoId = requerimientoId;
-    }
-
-    public Requerimiento(Integer requerimientoId, String codigo, String titulo) {
-        this.requerimientoId = requerimientoId;
+    public Requerimiento(String codigo) {
         this.codigo = codigo;
-        this.titulo = titulo;
     }
 
-    public Integer getRequerimientoId() {
-        return requerimientoId;
-    }
-
-    public void setRequerimientoId(Integer requerimientoId) {
-        this.requerimientoId = requerimientoId;
+    public Requerimiento(String codigo, String descripcion, Date fecha_creacion, int valor, String estado) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.fecha_creacion = fecha_creacion;
+        this.valor = valor;
+        this.estado = estado;
     }
 
     public String getCodigo() {
@@ -94,50 +83,18 @@ public class Requerimiento implements Serializable {
     }
 
     public void setCodigo(String codigo) {
-        this.codigo = codigo;
+        this.codigo = codigo.toUpperCase();
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion.toUpperCase();
     }
 
-    public List<Itemdiario> getItemdiarioList() {
-        return itemdiarioList;
-    }
-
-    public void setItemdiarioList(List<Itemdiario> itemdiarioList) {
-        this.itemdiarioList = itemdiarioList;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public Integer getCorrelativo() {
-        return correlativo;
-    }
-
-    public void setCorrelativo(Integer correlativo) {
-        this.correlativo = correlativo;
-    }
-
-    public Integer getAnio() {
-        return anio;
-    }
-
-    public void setAnio(Integer anio) {
-        this.anio = anio;
-    }
-
-    public Date getFecha_creacion() {        
+    public Date getFecha_creacion() {
         return fecha_creacion;
     }
 
@@ -145,13 +102,42 @@ public class Requerimiento implements Serializable {
         this.fecha_creacion = fecha_creacion;
     }
 
-        
-    
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado.toUpperCase();
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo.toUpperCase();
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (requerimientoId != null ? requerimientoId.hashCode() : 0);
+        hash += (codigo != null ? codigo.hashCode() : 0);
         return hash;
     }
 
@@ -162,7 +148,7 @@ public class Requerimiento implements Serializable {
             return false;
         }
         Requerimiento other = (Requerimiento) object;
-        if ((this.requerimientoId == null && other.requerimientoId != null) || (this.requerimientoId != null && !this.requerimientoId.equals(other.requerimientoId))) {
+        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
         return true;
@@ -170,7 +156,7 @@ public class Requerimiento implements Serializable {
 
     @Override
     public String toString() {
-        return "com.diarioru.entidades.Requerimiento[ requerimientoId=" + requerimientoId + " ]";
+        return "Entidades.Utp.Requerimiento[ codigo=" + codigo + " ]";
     }
     
 }

@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE HTML>
@@ -9,48 +11,41 @@
         <link href="static/css/estilos.css" rel="stylesheet"/>
         <script src="static/js/jquery-1.10.2.min.js"></script>
         <script src="static/js/bootstrap.min.js"></script>
-        <title>DIARIO UTI</title>
+        <title>RU</title>
     </head>
 
     <body>
         <div class="container-fluid">
             <div class="row-fluid">                
-                <header>    
-                    <blockquote>
-                        <h1>DIARIO UTI</h1>
-                        <small>${user}, ${role}</small>
-                    </blockquote>
-                    <a href="<c:url value="/j_spring_security_logout"/>" class="btn btn-danger btn-mini btn-logout">Sacame de aqui!</a>
-                </header>                             
-                <hr/>
+                <jsp:include page="tags/Header.jsp"/>
             </div>
             <div class="row-fluid">
-                <nav class="span3">
-                    <ul class="nav nav-list">
-                        <li class="nav-header">Requerimiento</li>
-                        <li><a href="diario.html">comentario diario</a></li>
-                        <li class="active"><a href="requerimiento.html">generar requerimiento</a></li>
-                        <li class="nav-header">Retrospectiva</li>
-                        <li><a href="#">lo bueno</a></li>
-                        <li><a href="#">lo feo o malo</a></li>
-                        <li><a href="#">sugerencias e ideas</a></li>
-                    </ul>
+                <nav class="span3 well">
+                    <jsp:include page="tags/Menu.jsp"/>
                 </nav>
                 <section class="span9">
+                    <f:form method="post" action="listar-requerimiento.html" class="form-inline" commandName="item1">
+                        <f:select path="usuario.codigo" cssClass="input-xlarge">
+                            <f:options items="${usuarios}" itemValue="codigo" itemLabel="nombreCompleto" />
+                        </f:select>
+                        <button type="submit" class="btn">Filtrar</button>
+                    </f:form>
                     <table class="table table-striped table-bordered table-hover table-condensed">
                         <thead>
                             <tr>
-                                <th>Fecha</th>
+                                <th class="span2">Fecha</th>
                                 <th>Requerimiento</th>
                                 <th>Titulo</th>
+                                <th>Usuario</th>
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach var="requerimiento" items="${requerimientos}">
                                 <tr>
-                                    <td>${requerimiento.fecha_creacion}</td>
+                                    <td>${fn:substring(requerimiento.fecha_creacion,0,10)}</td>
                                     <td><b>${requerimiento.codigo}</b></td>
-                                    <td>${requerimiento.titulo}</td>
+                                    <td>${requerimiento.descripcion}</td>
+                                    <td>${requerimiento.usuario.codigo}</td>
                                 </tr>
                             </c:forEach>                    
                         </tbody>
@@ -58,7 +53,7 @@
                 </section>
             </div>
             <div class="row-fluid">
-                <footer></footer>
+                <jsp:include page="tags/Footer.jsp"/>
             </div>
         </div>
 

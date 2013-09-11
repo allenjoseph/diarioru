@@ -4,6 +4,7 @@
  */
 package com.diarioru.entidades;
 
+import com.diarioru.util.Helper;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -18,47 +19,50 @@ import javax.persistence.Table;
 
 /**
  *
- * @author allen
+ * @author dev-pai-20
  */
 @Entity
-@Table(name = "USUARIO", schema = "avelasco")
+@Table(name = "UTMUSRE", schema = "UTP")
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
-    @NamedQuery(name = "Usuario.findByUsuarioId", query = "SELECT u FROM Usuario u WHERE u.usuarioId = :usuarioId"),
-    @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre")})
+    @NamedQuery(name = "Usuario.findByCCodusu", query = "SELECT u FROM Usuario u WHERE u.codigo = :codigo"),
+    @NamedQuery(name = "Usuario.findByCNomusu", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
+    @NamedQuery(name = "Usuario.findByCApepat", query = "SELECT u FROM Usuario u WHERE u.apellidoPaterno = :apellidoPaterno"),
+    @NamedQuery(name = "Usuario.findByCApemat", query = "SELECT u FROM Usuario u WHERE u.apellidoMaterno = :apellidoMaterno"),
+    @NamedQuery(name = "Usuario.findByCPassdw", query = "SELECT u FROM Usuario u WHERE u.password = :password")})
 public class Usuario implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
     @Id
     @Basic(optional = false)
-    @Column(name = "usuario_id")
-    private String usuarioId;
-    
-    @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "C_CODUSU")
+    private String codigo;
+    @Column(name = "C_NOMUSU")
     private String nombre;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    private List<Itemdiario> itemdiarioList;
-       
+    @Column(name = "C_APEPAT")
+    private String apellidoPaterno;
+    @Column(name = "C_APEMAT")
+    private String apellidoMaterno;
+    @Column(name = "C_PASWRD")
+    private String password;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigo")
+    private List<Requerimiento> requerimientoList;
+    @OneToMany(mappedBy = "usuario")
+    private List<Comentario> comentarioList;
+
     public Usuario() {
     }
 
-    public Usuario(String usuarioId) {
-        this.usuarioId = usuarioId;
+    public Usuario(String codigo) {
+        this.codigo = codigo;
     }
 
-    public Usuario(String usuarioId, String nombre) {
-        this.usuarioId = usuarioId;
-        this.nombre = nombre;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public String getUsuarioId() {
-        return usuarioId;
-    }
-
-    public void setUsuarioId(String usuarioId) {
-        this.usuarioId = usuarioId;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo.toUpperCase();
     }
 
     public String getNombre() {
@@ -66,21 +70,57 @@ public class Usuario implements Serializable {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = nombre.toUpperCase();
     }
 
-    public List<Itemdiario> getItemdiarioList() {
-        return itemdiarioList;
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
     }
 
-    public void setItemdiarioList(List<Itemdiario> itemdiarioList) {
-        this.itemdiarioList = itemdiarioList;
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno.toUpperCase();
+    }
+
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
+    }
+
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno.toUpperCase();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password){
+        this.password = password.isEmpty() ? "" : Helper.md5(password);
+    }
+
+    public List<Requerimiento> getRequerimientoList() {
+        return requerimientoList;
+    }
+
+    public void setRequerimientoList(List<Requerimiento> requerimientoList) {
+        this.requerimientoList = requerimientoList;
+    }
+
+    public List<Comentario> getComentarioList() {
+        return comentarioList;
+    }
+
+    public void setComentarioList(List<Comentario> comentarioList) {
+        this.comentarioList = comentarioList;
+    }
+
+    public String getNombreCompleto() {
+        return nombre + " " + apellidoPaterno;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (usuarioId != null ? usuarioId.hashCode() : 0);
+        hash += (codigo != null ? codigo.hashCode() : 0);
         return hash;
     }
 
@@ -91,7 +131,7 @@ public class Usuario implements Serializable {
             return false;
         }
         Usuario other = (Usuario) object;
-        if ((this.usuarioId == null && other.usuarioId != null) || (this.usuarioId != null && !this.usuarioId.equals(other.usuarioId))) {
+        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
         return true;
@@ -99,7 +139,6 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.diarioru.entidades.Usuario[ usuarioId=" + usuarioId + " ]";
+        return "Entidades.Utp.Usuario[ codigo=" + codigo + " ]";
     }
-    
 }

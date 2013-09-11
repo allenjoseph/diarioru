@@ -15,4 +15,6 @@ public interface UsuarioInterface {
     
     public List<Usuario> listarUsuarios();
     
+    public void insertarUsuario(Usuario usuario);
+    
 }

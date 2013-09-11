@@ -48,11 +48,11 @@ public class Itemdiario implements Serializable {
     @Column(name = "comentario")
     private String comentario;
     
-    @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
+    @JoinColumn(name = "usuario_id", referencedColumnName = "C_CODUSU")
     @ManyToOne(optional = false)
     private Usuario usuario;
     
-    @JoinColumn(name = "requerimiento_id", referencedColumnName = "requerimiento_id")
+    @JoinColumn(name = "requerimiento_id", referencedColumnName = "C_CODREQ")
     @ManyToOne(optional = false)
     private Requerimiento requerimiento;
     
