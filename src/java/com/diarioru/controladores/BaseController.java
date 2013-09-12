@@ -15,6 +15,9 @@ import com.diarioru.to.SugerenciaForm;
 import com.diarioru.to.UsuarioTO;
 import com.diarioru.util.Helper;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +68,6 @@ public class BaseController {
         ModelAndView modelo = new ModelAndView("Comentario");
         Helper.agregarUsuario(modelo);
         modelo.addObject("comentario", new Comentario());
-        modelo.addObject("comentario2", new Comentario());
         modelo.addObject("requerimientos", requerimientoService.listarRequerimientos());
         modelo.addObject("usuarios", usuarioService.listarUsuarios());
         return modelo;

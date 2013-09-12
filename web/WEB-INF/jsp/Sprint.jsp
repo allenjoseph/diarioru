@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,8 +9,12 @@
         <meta charset="UTF-8">
         <link href="../static/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="../static/css/estilos.css" rel="stylesheet"/>
+        <link href="../static/css/datepicker.css" rel="stylesheet"/>
         <script src="../static/js/jquery-1.10.2.min.js"></script>
         <script src="../static/js/bootstrap.min.js"></script>
+        <script src="../static/js/bootstrap-datepicker.js"></script>
+        <script src="../static/js/bootstrap-datepicker.es.js"></script>
+        <script src="../static/js/diarioru.js"></script>
         <title>RU</title>
     </head>
     <body>

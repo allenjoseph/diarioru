@@ -9,15 +9,18 @@
         <meta charset="UTF-8">
         <link href="static/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="static/css/estilos.css" rel="stylesheet"/>
+        <link href="static/css/datepicker.css" rel="stylesheet"/>
         <script src="static/js/jquery-1.10.2.min.js"></script>
         <script src="static/js/bootstrap.min.js"></script>
+        <script src="static/js/bootstrap-datepicker.js"></script>
+        <script src="static/js/bootstrap-datepicker.es.js"></script>
         <script src="static/js/diarioru.js"></script>
-        <title>RU</title>
-    </head>
+            <title>RU</title>
+        </head>
 
-    <body>
-        <div class="container-fluid">
-            <div class="row-fluid">                
+        <body>
+            <div class="container-fluid">
+                <div class="row-fluid">                
                 <jsp:include page="tags/Header.jsp"/>
             </div>                
             <div class="row-fluid">
@@ -52,6 +55,16 @@
                             </div>
                         </div>
                         <div class="control-group">
+                            <label class="control-label">Fecha</label>
+                            <div class="controls">  
+                                <f:hidden path="fecha" class="fecha-input"/>
+                                <div class="input-append date datepicker" data-date-format="dd/mm/yyyy">                                         
+                                    <input type="text" class="datepicker" disabled="disabled"/>
+                                    <span class="add-on"><i class="icon-calendar"></i></span>           
+                                </div>
+                            </div>
+                        </div>                            
+                        <div class="control-group">
                             <div class="controls">
                                 <button type="submit" class="btn btn-success">Registrar Comentario</button>                                
                             </div>
@@ -61,7 +74,7 @@
                     <blockquote>
                         <h3>Comentarios</h3>
                     </blockquote>
-                    <f:form method="post" action="listar-item.html" class="form-horizontal" commandName="comentario2">
+                    <f:form method="post" action="listar-item.html" class="form-horizontal" commandName="comentario">
                         <div class="control-group">
                             <label class="control-label" for="inputEmail">Usuario</label>
                             <div class="controls">

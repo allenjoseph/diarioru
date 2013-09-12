@@ -7,12 +7,10 @@ package com.diarioru.dao;
 import com.diarioru.entidades.Comentario;
 import com.diarioru.entidades.Requerimiento;
 import com.diarioru.to.ComentarioTO;
-import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -63,7 +61,6 @@ public class ComentarioDao extends HibernateDaoSupport implements ComentarioDaoI
     @Override
     public void insertarEnBase(Comentario comentario) {
         comentario.setComentarioId(nextId());
-        comentario.setFecha(new Date());
         getHibernateTemplate().save(comentario);
     }
 
