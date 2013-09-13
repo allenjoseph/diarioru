@@ -50,4 +50,9 @@ public class RequerimientoService implements RequerimientoServiceInterface{
     public void setRequerimientoInterface(RequerimientoInterface requerimientoInterface) {
         this.requerimientoInterface = requerimientoInterface;
     }
+
+    @Override
+    public List<String> buscarRequerimiento(String texto) {
+        return requerimientoInterface.buscarRequerimiento(texto);
+    }
 }

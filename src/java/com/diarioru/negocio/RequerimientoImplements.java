@@ -39,5 +39,10 @@ public class RequerimientoImplements implements RequerimientoInterface{
     public List<Requerimiento> filtrarRequerimientos(String usuario) {
         return requerimientoDAO.filtrarRequerimientos(usuario);
     }
+
+    @Override
+    public List<String> buscarRequerimiento(String texto) {
+        return requerimientoDAO.buscarRequerimiento(texto);
+    }
     
 }

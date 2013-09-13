@@ -3,14 +3,14 @@
  * and open the template in the editor.
  */
 
-$(function(){
-    $.ajax({
-        url : '/obtenerUsuarios.json',
-        dataType : 'json',
-        success : function(data){
-            alert(data);
-        }
+$(function() {
+
+    $("#buscar-requerimiento").autocomplete({
+        source: "filtrarRequerimiento.json"
     });
+
+    $(".datepicker").datepicker({dateFormat: 'dd/mm/yy'});
+    
 });
 
 

@@ -22,4 +22,6 @@ public interface RequerimientoDaoInterface {
     public String obtenerCodigo(String tipo);
     
     public List<Requerimiento> filtrarRequerimientos(String usuario);
+
+    public List<String> buscarRequerimiento(String texto);
 }

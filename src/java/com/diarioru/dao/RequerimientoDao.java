@@ -68,4 +68,11 @@ public class RequerimientoDao extends HibernateDaoSupport implements Requerimien
     public String obtenerCodigo(String tipo) {
         return "";
     }
+
+    @Override
+    public List<String> buscarRequerimiento(String texto) {
+        String query = "select r.codigo from Requerimiento r where r.codigo like :texto";
+        String param = "%"+texto+"%";
+        return getHibernateTemplate().findByNamedParam(query, "texto", param);
+    }
 }

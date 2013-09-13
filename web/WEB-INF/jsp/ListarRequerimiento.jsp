@@ -8,9 +8,12 @@
     <head>
         <meta charset="UTF-8">
         <link href="static/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="static/css/custom-theme/jquery-ui-1.10.0.custom.css" rel="stylesheet"/>
         <link href="static/css/estilos.css" rel="stylesheet"/>
         <script src="static/js/jquery-1.10.2.min.js"></script>
         <script src="static/js/bootstrap.min.js"></script>
+        <script src="static/js/jquery-ui-1.9.2.custom.min.js"></script>
+        <script src="static/js/diarioru.js"></script>
         <title>RU</title>
     </head>
 
@@ -24,11 +27,43 @@
                     <jsp:include page="tags/Menu.jsp"/>
                 </nav>
                 <section class="span9">
-                    <f:form method="post" action="listar-requerimiento.html" class="form-inline" commandName="item1">
-                        <f:select path="usuario.codigo" cssClass="input-xlarge">
-                            <f:options items="${usuarios}" itemValue="codigo" itemLabel="nombreCompleto" />
-                        </f:select>
-                        <button type="submit" class="btn">Filtrar</button>
+                    <f:form method="post" action="listar-requerimiento.html" class="form-horizontal" commandName="item1">
+                        <div class="control-group">
+                            <div class="control-label">
+                                Usuario :
+                            </div>
+                            <div class="controls">
+                                <f:select path="usuario.codigo" cssClass="input-xlarge">
+                                    <f:options items="${usuarios}" itemValue="codigo" itemLabel="nombreCompleto" />
+                                </f:select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                Busqueda Sensitiva :
+                            </div>
+                            <div class="controls">
+                                <input type="text" id="buscar-requerimiento"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                DatePicker :
+                            </div>
+                            <div class="controls">
+                                <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-calendar"></i></span>
+                                    <input type="text" placeholder="fecha" class="input-medium datepicker">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                            </div>
+                            <div class="controls">
+                                <input type="submit" value="Filtrar" class="btn"/>
+                            </div>
+                        </div>
                     </f:form>
                     <table class="table table-striped table-bordered table-hover table-condensed">
                         <thead>

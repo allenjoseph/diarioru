@@ -20,4 +20,6 @@ public interface RequerimientoServiceInterface {
     public void insertar(Requerimiento requerimiento);
     
     public List<Requerimiento> filtrarRequerimientos(String usuario);
+
+    public List<String> buscarRequerimiento(String texto);
 }

@@ -23,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
@@ -123,13 +124,18 @@ public class BaseController {
 
     /*EJEMPLO JSON - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
     @RequestMapping(value = "/obtenerUsuarios.json", method = RequestMethod.GET)
-    public @ResponseBody
-    List<UsuarioTO> obtenerListaUsuarios() {
+    public @ResponseBody  List<UsuarioTO> obtenerListaUsuarios() {
         List<UsuarioTO> listaUsuarios = new ArrayList<UsuarioTO>();
         for (Usuario usuario : usuarioService.listarUsuarios()) {
             UsuarioTO u = new UsuarioTO(usuario.getCodigo(), usuario.getNombre());
             listaUsuarios.add(u);
         }
         return listaUsuarios;
+    }
+    
+    @RequestMapping(value = "/filtrarRequerimiento.json", method = RequestMethod.GET)
+    public @ResponseBody List<String> filtrarRequerimiento(@RequestParam(value = "term") String texto) {
+        List<String> requerimientos = requerimientoService.buscarRequerimiento(texto);
+        return requerimientos;
     }
 }
